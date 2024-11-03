@@ -83,6 +83,90 @@ FROM customers
 ORDER BY contact_name DESC, city DESC;
 ```
 
+Use LIKE
+
+```SQL
+SELECT employee_id, postal_code
+FROM employees
+WHERE postal_code LIKE '%1'
+```
+Use  IS NOT NULL and  IS NULL
+```SQL
+SELECT order_id, ship_name, ship_region
+FROM orders 
+WHERE ship_region IS NOT NULL
+
+SELECT order_id, ship_name, ship_region
+FROM orders 
+WHERE ship_region IS NULL
+```
+
+USE GROUP BY
+
+```SQL 
+SELECT category_id, SUM(units_in_stock)
+FROM products
+GROUP BY category_id
+ORDER BY category_id
+```
+
+1. Select all order records in which the name of the country of shipment begins with 'U'
+
+2. Select the order records (include columns of order ID, customer ID, weight and country of shipment) that should be shipped to countries whose name begins with 'N', sort by weight (descending) and display only the first 10 records.
+
+3. Select employee records (include columns of first name, last name, phone number, region) in which the region is unknown
+
+4. Count the number of customers whose region is known
+
+5. Count the number of suppliers in each of the countries and sort the results of grouping in descending order
+
+6. Calculate the total weight of orders (in which the region is known) by country, then filter by total weight (output only those records where the total weight is greater than 2750) and sort in descending order of total weight.
+
+7. Select all the unique countries of customers and suppliers and sort the countries in ascending order
+
+```SQL
+SELECT order_id, ship_country
+FROM orders
+WHERE ship_country LIKE 'U%';
+
+SELECT order_id, customer_id, freight, ship_country;
+FROM orders
+WHERE ship_country LIKE 'N%'
+ORDER BY freight DESC
+LIMIT 10;
+
+SELECT first_name, last_name, home_phone, region
+FROM employees
+WHERE region IS NULL;
+
+SELECT COUNT(*)
+FROM customers
+WHERE region IS NOT NULL;
+
+SELECT country, COUNT(*)
+FROM suppliers
+GROUP BY country
+ORDER BY COUNT DESC;
+
+SELECT ship_country, SUM(freight)
+FROM orders
+WHERE ship_region IS NOT NULL
+GROUP BY ship_country
+HAVING SUM(freight) > 2750
+ORDER BY SUM(freight) DESC;
+
+SELECT country
+FROM customers
+UNION
+SELECT country
+FROM suppliers
+ORDER BY country;
+```
+
+
+
+
+
 
 
 
