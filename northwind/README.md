@@ -1,11 +1,15 @@
 # PostgreSQL practice
 
+1. [Simple SELECT query](#select)
+2. [Simple JOIN query](#)
+
 To practice queries, I decided to take the ready-made northwind database taken from [here](https://github.com/pthom/northwind_psql).
 
 ![DB](https://github.com/pthom/northwind_psql/blob/master/ER.png)
 
 
-## Select
+## <a id="select">Select</a>
+
 First, let's look at all the columns in the table **products**.
 
 
@@ -163,6 +167,7 @@ FROM suppliers
 ORDER BY country;
 ```
 
+## <a id="join">JOIN</a>
 
 
 
